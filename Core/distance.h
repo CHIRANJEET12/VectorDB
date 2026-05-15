@@ -1,3 +1,5 @@
+// distace metric init header file
+
 #pragma once
 #include <vector>
 using namespace std;

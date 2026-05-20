@@ -1,9 +1,10 @@
-#include "hnsw_index.h"
+#include "hnsw_node.h"
 #include <queue>
 #include <algorithm>
 
-HNSWIndex::HNSWIndex(int dim, int _M) : DIM(dim), M(_M), entry(-1) {};
 
+//constructor
+HNSWIndex::HNSWIndex(int dim, int _M) : DIM(dim), M(_M), entry(-1) {};
 
 void HNSWIndex::add(int id, const vector<float>& vec){
     HNSWNode newNode(id, vec);

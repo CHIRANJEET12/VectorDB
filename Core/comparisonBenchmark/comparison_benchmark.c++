@@ -3,7 +3,7 @@
 #include <random>
 #include <chrono>
 
-#include "hnsw_index.h"
+#include "hnsw_node.h"
 #include "kdtree.h"
 #include "bruteforce.h"
 

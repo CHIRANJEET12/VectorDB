@@ -18,4 +18,4 @@ float manhattan(const vector<float>& a, const vector<float>& b);
 float cosine(const vector<float>& a, const vector<float>& b);
 
 
-float computeDistanceBasedonMetrics(const vector<float>& a, vector<float>& b, Metric metric);
+float computeDistanceBasedonMetrics(const vector<float>& a, const vector<float>& b, Metric metric);

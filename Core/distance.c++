@@ -55,7 +55,16 @@ float cosine(const vector<float>& a, const vector<float>& b){
         sqr_b += b[i] * b[i];
     }
 
-    return dot_product/(sqrt(sqr_a) * sqrt(sqr_b));
+    float magnitude = (sqrt(sqr_a) * sqrt(sqr_b));
+
+    if(magnitude == 0.0f){
+        throw invalid_argument("Vector dimensions should be same for being considered for metric calculation.");
+    }
+    float cosineSimilarity = dot_product/magnitude;
+
+    float cosineDistance = 1 - cosineSimilarity;
+
+    return cosineSimilarity;
 }
 
 float computeDistanceBasedonMetrics(const vector<float>& a, const vector<float>& b, Metric metric){

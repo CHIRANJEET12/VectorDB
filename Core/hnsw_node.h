@@ -31,7 +31,7 @@ class HNSWIndex {
     public:
         HNSWIndex(int dim, int _M, int _efSearch);
 
-        void add(int id, const vector<float>& vec);
+        void add(int id, const vector<float>& vec, Metric metric);
 
         vector<int> search(const vector<float>& query, int k, Metric metric);
 };

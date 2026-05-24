@@ -21,7 +21,7 @@ int HNSWIndex::randomLevel(){
     return level;
 }
 
-void HNSWIndex::add(int id, const vector<float>& vec){
+void HNSWIndex::add(int id, const vector<float>& vec, Metric metric){
     int level = randomLevel();
     level = min(level, 5);
     HNSWNode newNode(id, level, vec);
@@ -79,7 +79,7 @@ void HNSWIndex::add(int id, const vector<float>& vec){
                 continue;
             }
 
-            float dist = computeDistanceBasedonMetrics(vec, nodes[i].vec, Metric::EUCLIDEAN);
+            float dist = computeDistanceBasedonMetrics(vec, nodes[i].vec, metric);
             if(pq.size() < M){
                 pq.push({dist, i});
             }else if(dist < pq.top().first){

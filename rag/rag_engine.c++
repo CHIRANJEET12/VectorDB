@@ -24,7 +24,9 @@ int main(){
     for(int i=0;i<docs.size();i++){
         vector<float> emb = embedText(docs[i]);
 
-        index.add(i,emb);
+        // Keep this same as in index.search in line number 44.
+        // Options available(Euclidean, Manhattan, Cosine)
+        index.add(i,emb,Metric::COSINE);
 
         docStore[i] = docs[i];
     }

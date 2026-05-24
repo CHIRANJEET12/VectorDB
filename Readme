@@ -1,0 +1,2 @@
+Run this command in terminal --> 
+ g++ *.c++ ../Core/*.c++ -o final_answer; .\final_answer.exe  

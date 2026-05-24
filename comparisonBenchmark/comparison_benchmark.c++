@@ -22,9 +22,12 @@ vector<float> randomVector(int dim){
 }
 
 void benchmarkHNSW(int N, int DIM, int Q, int k, Metric metric){
+
     cout << "\n================ HNSW ================\n";
 
-    HNSWIndex index(DIM,8);
+    HNSWIndex index(DIM, 8, 50);
+
+    // ---------------- BUILD ----------------
 
     auto build_start = chrono::high_resolution_clock::now();
 
@@ -35,23 +38,48 @@ void benchmarkHNSW(int N, int DIM, int Q, int k, Metric metric){
     auto build_end = chrono::high_resolution_clock::now();
 
     cout << "Build time: "
-         << chrono::duration<double, milli>(build_end - build_start).count()
+         << chrono::duration<double, milli>(
+                build_end - build_start
+            ).count()
          << " ms\n";
 
-    for(int i=0;i<10;i++)
+    // ---------------- WARMUP ----------------
+
+    for(int i=0;i<10;i++){
         index.search(QUERIES[0], k, metric);
+    }
+
+    // ---------------- QUERY BENCHMARK ----------------
 
     auto start = chrono::high_resolution_clock::now();
-    for(int i=0;i<Q;i++)
+
+    for(int i=0;i<Q;i++){
         index.search(QUERIES[i], k, metric);
+    }
+
     auto end = chrono::high_resolution_clock::now();
 
-    double ms = chrono::duration<double, milli>(end - start).count();
+    double ms =
+        chrono::duration<double, milli>(
+            end - start
+        ).count();
 
-    cout << "Total query time: " << ms << " ms\n";
-    cout << "Per query: " << (ms*1000.0)/Q << " us\n";
+    // ---------------- RESULTS ----------------
 
+    cout << "Total query time: "
+         << ms
+         << " ms\n";
+
+    cout << "Per query: "
+         << (ms * 1000.0) / Q
+         << " us\n";
+
+    cout << "Memory (approx): "
+         << (N * DIM * sizeof(float))
+                / (1024.0 * 1024.0)
+         << " MB\n";
 }
+
 
 void benchmarkKDTree(int N, int DIM, int Q, int k, Metric metric){
     cout << "\n================ KD-TREE ================\n";
@@ -106,8 +134,8 @@ void benchmarkBrute(int N, int DIM, int Q, int k, Metric metric){
 }
 
 int main(){
-    int N = 1000;
-    int DIM = 16;
+    int N = 10000;
+    int DIM = 128;
     int Q = 100;
     int k = 5;
 

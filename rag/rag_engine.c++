@@ -40,7 +40,7 @@ int main(){
 
         vector<float> qvec = embedText(query);
 
-        vector<int> res = index.search(qvec, 3, Metric::EUCLIDEAN);
+        vector<int> res = index.search(qvec, 5, Metric::COSINE);
 
         cout << "\nTop results:\n";
 

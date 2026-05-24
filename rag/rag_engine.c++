@@ -26,7 +26,7 @@ int main(){
 
         // Keep this same as in index.search in line number 44.
         // Options available(Euclidean, Manhattan, Cosine)
-        index.add(i,emb,Metric::COSINE);
+        index.add(i,emb,Metric::EUCLIDEAN);
 
         docStore[i] = docs[i];
     }
@@ -42,7 +42,7 @@ int main(){
 
         vector<float> qvec = embedText(query);
 
-        vector<int> res = index.search(qvec, 5, Metric::COSINE);
+        vector<int> res = index.search(qvec, 5, Metric::EUCLIDEAN);
 
         cout << "\nTop results:\n";
 

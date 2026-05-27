@@ -9,6 +9,10 @@ void BruteForceIndex::add(const VectorItem& item){
     data.push_back(item);
 }
 
+const vector<float>& BruteForceIndex::getVector(int id) const{
+    return data[id].vec;
+}
+
 
 vector<int> BruteForceIndex::search(const vector<float>& query, int k, Metric metric){
 

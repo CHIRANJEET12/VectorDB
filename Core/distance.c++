@@ -62,9 +62,9 @@ float cosine(const vector<float>& a, const vector<float>& b){
     }
     float cosineSimilarity = dot_product/magnitude;
 
-    float cosineDistance = 1 - cosineSimilarity;
+    float cosineDistance = 1.0f - cosineSimilarity;
 
-    return cosineSimilarity;
+    return cosineDistance;
 }
 
 float computeDistanceBasedonMetrics(const vector<float>& a, const vector<float>& b, Metric metric){
